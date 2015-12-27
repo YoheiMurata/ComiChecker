@@ -1,0 +1,21 @@
+# 誰が誰を気にしているかを記録する
+# リスト
+CREATE TABLE USER_FAVORITE(
+	# システムのユーザID
+	USER_ID INT UNSIGNED NOT NULL,
+	# TwitterのユーザID
+	TWITTER_USER_ID BIGINT UNSIGNED NOT NULL,
+
+	# ユーザIDはUSERテーブルの外部キー
+	FOREIGN KEY( USER_ID ) 
+	REFERENCES USER( USER_ID ),
+
+	# TwitterのユーザIDは
+	# TWITTER_USERテーブルの外部キー
+	FOREIGN KEY( TWITTER_USER_ID )
+	REFERENCES TWITTER_USER( TWITTER_USER_ID ),
+	
+	# ユーザID、TwitterのユーザIDの
+	# 組み合わせはユニークでないといけない
+	UNIQUE( USER_ID, TWITTER_USER_ID )
+);

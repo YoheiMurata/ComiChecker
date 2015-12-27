@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	</head>
+	<body>
+		<% mailDateTime = DateTime.now %>
+		<p><%= mailDateTime.year %>年<%= mailDateTime.mon %>月<%= mailDateTime.day %>日<%= mailDateTime.hour %>時<%= mailDateTime.min %>分の状況を報告します</p>
+		<table border="0">
+		<% mailBodyData.each{ |element| %>
+			<tr>
+			<td><%= element.author_name %>さんのツイート</td>
+			<td><%= element.html %></td>
+			</tr>
+		<% } %>
+		</table>
+	</body>
+</html>
