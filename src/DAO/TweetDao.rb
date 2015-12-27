@@ -150,8 +150,6 @@ class TweetDao < BaseDao
 
 		sql = sql[0..(sql.length - 4)]
 
-		# DEBUG
-		SQL_GET_SEARCHED_TWEET + " AND ( #{ sql } )"
 		# DBに記載されている時刻はグリニッジ標準時
 		return BaseDao.execute( connection, SQL_GET_SEARCHED_TWEET + " AND ( #{ sql } )",   Twitter.convertToMysqlDate( ( DateTime.now - ( 9.0 / 24.0 ) ) - ( numMinute / ( 24.0 * 60.0 ) ) ) )
 

@@ -24,10 +24,6 @@ class HttpConnector
 		@useSSL = useSSL
 		setHost( hostname )
 		@connection = createHttpConnection
-		#debug
-		puts "hostname = #{ @host }"
-		puts "port = #{ @port }"
-		puts "connection = #{ @connection }"
 	end	
 
 	# ホスト名のセッタ
@@ -51,8 +47,6 @@ class HttpConnector
 	#         HTTPクラスのrequestメソッドで返される値
 	def doGet( uri, headers, query )
 		begin
-			# debug
-			puts "doGet: start"
 			# resultは結果を代入する変数
 			result = nil
 			str = nil
@@ -78,11 +72,8 @@ class HttpConnector
 				end
 
 			end	
-			puts "httpHeader = #{ httpHeader }"
 			# 受け取ったURI、ヘッダを使用してGETリクエストを生成
 			get = createGetRequest( str, httpHeader )
-			# debug
-			puts "get = #{ get }"
 
 			# 生成したGETリクエストを投げる
 			response = @connection.request( get )
@@ -103,8 +94,6 @@ class HttpConnector
 	#         HTTPクラスのrequestメソッドで返される値
 	def doPost( uri, headers, body )
 		begin
-			# debug
-			puts "doPost: start"
 			# resultは結果を代入する変数
 			result = nil
 			str = uri
@@ -126,12 +115,8 @@ class HttpConnector
 
 			end	
 
-			puts "httpHeader = #{ httpHeader }"
 			# 受け取ったURI、ヘッダを使用してPOSTリクエストを生成
 			post = createPostRequest( uri, httpHeader, body )
-			# debug
-			puts "post = #{ post }"
-			puts "post.body = #{ post.body }"
 
 			# 生成したPOSTリクエストを投げる
 			response = @connection.request( post )
@@ -154,7 +139,6 @@ class HttpConnector
 		https = Net::HTTP.new( @host, @port )
 		https.use_ssl = @useSSL
 		
-		# debug
 		# httpのリクエストヘッダを出力
 		#https.set_debug_output $stderr
 
@@ -203,8 +187,6 @@ class HttpConnector
 			# 末尾についてるはずの'&'を取り除く
 			str = str[ 0, str.length - 1 ]	
 				
-			# debug
-			puts "str = #{ str }"
 		end
 
 		return str

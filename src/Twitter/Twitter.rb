@@ -87,19 +87,10 @@ class Twitter
 	
 		headers = makePostHeader
 		
-		# debug
-		puts "headers[ HEADER_NAME_AUTH ] = #{ headers[ HEADER_NAME_AUTH ] }"
-		
 		result = @connection.doPost( TWITTER_URI_OAUTH, headers, REQUEST_DATA_OAUTH )	
-		
-		# debug
-		puts "result = #{ result }"
-		puts "result.body = #{ result.body }"
 		
 		@accessToken = JSON.parse( result.body )[ RESPONSE_BODY_ACCESS_TOKEN ]
 		
-		# debug
-		puts "@accessToken is #{ @accessToken }"	
 	end	
 
 	# 取得した認証トークンを無効化して乗っ取りを防ぐ。
@@ -116,9 +107,6 @@ class Twitter
 		
 		result = @connection.doPost( TWITTER_URI_OAUTH_INVALIDATE, headers, body )	
 
-		# debug
-		puts "result = #{ result }"
-		puts "result.body = #{ result.body }"
 	end
 
 	# キーワードをもとにツイートを検索する
@@ -141,8 +129,6 @@ class Twitter
 
 		result = @connection.doGet( TWITTER_URI_GET_TWEET, headers, queries )
 		body = JSON.parse( result.body )
-		##DEBUG
-		puts body
 		
 		body = Statuses.new( body['statuses'] )
 		return body
@@ -241,7 +227,6 @@ class Twitter
 		return result
 	end
 	
-	# ここからプライベート
 	private
 	
 	# POSTヘッダを作成

@@ -1,7 +1,6 @@
 require 'mail'
 
 require_relative '../Exception/ArgumentException'
-#require_relative './Data/MailData'
 
 # メールを送信するクラス
 # Gmailのリレーを利用することを前提としている
@@ -31,8 +30,6 @@ class Mailer
 		
 		@senderName = senderName
 		@mailData = mailData
-		# DEBUG
-		puts "userName: #{ @userName }, password: #{ @password }, senderName: #{ @senderName }, mailData: #{ @mailData }"
 	end
 
 	# メールを送信する
@@ -60,7 +57,6 @@ class Mailer
 		html = @mailData[ MAIL_HTML_BODY ]
 		if( @mailData[ MAIL_HTML_BODY ] ) then
 			text_part = Mail::Part.new do
-				#puts "DEBUGGGGG: maildata[ MAIL_BODY ] = #{ @mailData[ MAIL_BODY ] }"
 				body text
 			end
 	
