@@ -1,6 +1,3 @@
-# HttpConnectorクラスを作成するので、
-# このクラスで通信を行うことはない
-#require 'net/http'
 require 'uri'
 require 'base64'
 require 'json'
